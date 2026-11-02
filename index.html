@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenalEase | Smart Healthcare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">🫘</div>
+            <div>
+                <h2>RenalEase</h2>
+                <p>Smart Healthcare</p>
+            </div>
+        </div>
+
+        <div class="menu-title">MENU</div>
+
+        <nav>
+            <a href="#" class="nav-link active" data-page="dashboard">
+                <span>⌂</span> Dashboard
+            </a>
+            <a href="#" class="nav-link" data-page="monitoring">
+                <span>◷</span> Live Monitoring
+            </a>
+            <a href="#" class="nav-link" data-page="alerts">
+                <span>♧</span> Alerts
+            </a>
+            <a href="#" class="nav-link" data-page="history">
+                <span>▤</span> Session History
+            </a>
+            <a href="#" class="nav-link" data-page="device">
+                <span>⚙</span> Device Status
+            </a>
+            <a href="#" class="nav-link" data-page="prototype">
+                <span>▣</span> Our Prototype
+            </a>
+            <a href="#" class="nav-link" data-page="about">
+                <span>ⓘ</span> About Project
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="connection-indicator"></div>
+            <div>
+                <strong>Hardware Status</strong>
+                <p id="sidebarHardwareStatus">Not Connected</p>
+            </div>
+        </div>
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h2 id="page-title">Dashboard</h2>
+                <p id="page-description">
+                    Welcome to RenalEase monitoring system.
+                </p>
+            </div>
+
+            <div class="topbar-right">
+                <span class="demo-label">DEMO MODE</span>
+                <div class="profile">R</div>
+            </div>
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section class="page-section" id="dashboard">
+
+            <div class="welcome-section">
+                <div>
+                    <h2>Welcome to RenalEase 🫘</h2>
+                    <p>
+                        Smart monitoring concept for dialysis-related
+                        parameters and device information.
+                    </p>
+                </div>
+                <div class="welcome-icon">🫘</div>
+            </div>
+
+            <div class="section-heading">
+                <h3>Monitoring Overview</h3>
+                <span class="status-text">Demo readings</span>
+            </div>
+
+            <div class="sensor-grid">
+
+                <div class="sensor-card">
+                    <div class="sensor-top">
+                        <span>Temperature</span>
+                        <span class="sensor-icon orange">♨</span>
+                    </div>
+                    <h2 id="temperature">36.8 °C</h2>
+                    <p>Temperature sensor</p>
+                </div>
+
+                <div class="sensor-card">
+                    <div class="sensor-top">
+                        <span>Pressure</span>
+                        <span class="sensor-icon blue">◉</span>
+                    </div>
+                    <h2 id="pressure">82 mmHg</h2>
+                    <p>Pressure sensor</p>
+                </div>
+
+                <div class="sensor-card">
+                    <div class="sensor-top">
+                        <span>Heart Rate</span>
+                        <span class="sensor-icon red">⌁</span>
+                    </div>
+                    <h2 id="heartRate">76 BPM</h2>
+                    <p>Heart-rate sensor</p>
+                </div>
+
+                <div class="sensor-card">
+                    <div class="sensor-top">
+                        <span>Pump Status</span>
+                        <span class="sensor-icon green">⚙</span>
+                    </div>
+                    <h2>Demo</h2>
+                    <p>Hardware not connected</p>
+                </div>
+
+            </div>
+
+            <div class="section-heading">
+                <h3>Monitoring Graph</h3>
+                <select id="sensorSelect">
+                    <option value="temperature">Temperature</option>
+                    <option value="pressure">Pressure</option>
+                    <option value="heartRate">Heart Rate</option>
+                </select>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div>
+                        <h3 id="chartTitle">Temperature Monitoring</h3>
+                        <p>Sample readings over time</p>
+                    </div>
+                    <span class="demo-label">SIMULATED</span>
+                </div>
+                <canvas id="monitorChart"></canvas>
+            </div>
+
+        </section>
+
+
+        <!-- LIVE MONITORING -->
+        <section class="page-section hidden" id="monitoring">
+
+            <div class="section-heading">
+                <h3>Live Sensor Monitoring</h3>
+                <span class="status-text" id="monitoringStatus">
+                    Demo mode
+                </span>
+            </div>
+
+            <div class="sensor-grid">
+
+                <div class="sensor-card">
+                    <div class="sensor-top">
+                        <span>Temperature</span>
+                        <span class="sensor-icon orange">♨</span>
+                    </div>
+                    <h2 id="liveTemperature">36.8 °C</h2>
+                    <p>Temperature sensor input</p>
+                </div>
+
+                <div class="sensor-card">
+                    <div class="sensor-top">
+                        <span>Pressure</span>
+                        <span class="sensor-icon blue">◉</span>
+                    </div>
+                    <h2 id="livePressure">82 mmHg</h2>
+                    <p>Pressure sensor input</p>
+                </div>
+
+                <div class="sensor-card">
+                    <div class="sensor-top">
+                        <span>Heart Rate</span>
+                        <span class="sensor-icon red">⌁</span>
+                    </div>
+                    <h2 id="liveHeartRate">76 BPM</h2>
+                    <p>Heart-rate sensor input</p>
+                </div>
+
+            </div>
+
+            <div class="chart-card">
+                <h3>Temperature Readings</h3>
+                <p>Sample readings over time</p>
+                <canvas id="liveChart"></canvas>
+            </div>
+
+            <p class="info-note">
+                Actual live monitoring requires a working Arduino connection
+                and configured data communication. The current readings
+                are simulated.
+            </p>
+
+        </section>
+
+
+        <!-- ALERTS -->
+        <section class="page-section hidden" id="alerts">
+
+            <div class="section-heading">
+                <h3>Alerts & Notifications</h3>
+            </div>
+
+            <div class="alert-card">
+                <div class="alert-icon">!</div>
+                <div>
+                    <h4>Hardware Not Connected</h4>
+                    <p>
+                        No physical device connection has been verified.
+                    </p>
+                    <small>System status</small>
+                </div>
+            </div>
+
+            <div class="alert-card">
+                <div class="alert-icon info">i</div>
+                <div>
+                    <h4>Demo Mode Active</h4>
+                    <p>
+                        The displayed sensor values are simulated
+                        for frontend demonstration.
+                    </p>
+                    <small>System notification</small>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- SESSION HISTORY -->
+        <section class="page-section hidden" id="history">
+
+            <div class="section-heading">
+                <h3>Session History</h3>
+                <span class="status-text">Sample data</span>
+            </div>
+
+            <div class="table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Session</th>
+                            <th>Date</th>
+                            <th>Temperature</th>
+                            <th>Pressure</th>
+                            <th>Heart Rate</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>Sample</td>
+                            <td>36.8 °C</td>
+                            <td>82 mmHg</td>
+                            <td>76 BPM</td>
+                            <td><span class="table-status">Demo</span></td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>Sample</td>
+                            <td>36.7 °C</td>
+                            <td>80 mmHg</td>
+                            <td>78 BPM</td>
+                            <td><span class="table-status">Demo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="info-note">
+                These are sample records, not actual patient history.
+            </p>
+
+        </section>
+
+
+        <!-- DEVICE STATUS -->
+        <section class="page-section hidden" id="device">
+
+            <div class="section-heading">
+                <h3>Device Management</h3>
+                <button class="add-device-btn" id="openDeviceForm">
+                    + Add Device
+                </button>
+            </div>
+
+            <!-- ADD DEVICE FORM -->
+            <div class="add-device-form hidden" id="deviceForm">
+
+                <h3>Connect a New Device</h3>
+
+                <label for="deviceName">Device Name</label>
+                <input
+                    type="text"
+                    id="deviceName"
+                    placeholder="Example: RenalEase Arduino Uno"
+                >
+
+                <label for="deviceType">Device Type</label>
+                <select id="deviceType">
+                    <option value="Arduino Uno">Arduino Uno</option>
+                    <option value="ESP8266">ESP8266</option>
+                    <option value="ESP32">ESP32</option>
+                    <option value="Other">Other Device</option>
+                </select>
+
+                <label for="connectionType">Connection Type</label>
+                <select id="connectionType">
+                    <option value="USB Serial">USB Serial</option>
+                    <option value="Wi-Fi">Wi-Fi</option>
+                    <option value="Bluetooth">Bluetooth</option>
+                </select>
+
+                <div class="form-buttons">
+                    <button class="connect-btn" id="connectDevice">
+                        Add Device
+                    </button>
+
+                    <button class="cancel-btn" id="cancelDevice">
+                        Cancel
+                    </button>
+                </div>
+
+                <p id="deviceMessage" class="device-message"></p>
+            </div>
+
+
+            <!-- DEVICE LIST -->
+            <div class="section-heading">
+                <h3>Added Devices</h3>
+                <span class="status-text" id="deviceCount">0 Devices</span>
+            </div>
+
+            <div id="deviceList">
+                <div class="empty-device">
+                    <div class="empty-icon">▣</div>
+                    <h3>No Devices Added</h3>
+                    <p>
+                        Add your Arduino or compatible device to get started.
+                    </p>
+                </div>
+            </div>
+
+            <p class="info-note">
+                Adding a device registers its details in this interface.
+                It does not establish a physical connection. Live monitoring
+                requires actual hardware communication.
+            </p>
+
+        </section>
+
+
+        <!-- OUR PROTOTYPE -->
+        <section class="page-section hidden" id="prototype">
+
+            <div class="section-heading">
+                <h3>Our Prototype</h3>
+                <span class="status-text">RenalEase Innovation</span>
+            </div>
+
+            <div class="prototype-banner">
+
+                <div class="prototype-content">
+                    <span class="small-tag">OUR FINAL YEAR PROJECT</span>
+
+                    <h2>RenalEase 🫘</h2>
+
+                    <h3>Compact Dialysis Monitoring Prototype</h3>
+
+                    <p>
+                        RenalEase is a battery-powered prototype designed
+                        to explore compact dialysis-related monitoring,
+                        sensor integration and remote observation.
+                    </p>
+
+                    <a
+                        href="https://github.com/Monika-003/proteus"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="github-button">
+                        View Product on GitHub →
+                    </a>
+                </div>
+
+                <div class="arduino-visual">
+                    <div class="arduino-board">
+                        <div class="arduino-usb"></div>
+                        <div class="arduino-chip">ATMEGA328P</div>
+                        <div class="arduino-label">ARDUINO</div>
+                        <div class="arduino-pins"></div>
+                        <div class="arduino-led"></div>
+                    </div>
+
+                    <p>Arduino Uno</p>
+                    <small>Prototype controller illustration</small>
+                </div>
+
+            </div>
+
+
+            <div class="section-heading">
+                <h3>Prototype Components</h3>
+            </div>
+
+            <div class="hardware-grid">
+
+                <div class="hardware-card">
+                    <div class="component-icon">▣</div>
+                    <h4>Arduino Uno</h4>
+                    <p>Main controller for sensor integration.</p>
+                </div>
+
+                <div class="hardware-card">
+                    <div class="component-icon">♨</div>
+                    <h4>Temperature Sensor</h4>
+                    <p>Monitors temperature readings.</p>
+                </div>
+
+                <div class="hardware-card">
+                    <div class="component-icon">◉</div>
+                    <h4>Pressure Sensor</h4>
+                    <p>Measures pressure in the prototype setup.</p>
+                </div>
+
+                <div class="hardware-card">
+                    <div class="component-icon">⌁</div>
+                    <h4>Heart Rate Sensor</h4>
+                    <p>Collects heart-rate readings.</p>
+                </div>
+
+                <div class="hardware-card">
+                    <div class="component-icon">⚙</div>
+                    <h4>Micro Pump</h4>
+                    <p>Supports the prototype fluid movement mechanism.</p>
+                </div>
+
+                <div class="hardware-card">
+                    <div class="component-icon">⌁</div>
+                    <h4>IoT Monitoring</h4>
+                    <p>Planned remote monitoring integration.</p>
+                </div>
+
+            </div>
+
+
+            <div class="github-panel">
+                <div>
+                    <h3>Explore the Source Code</h3>
+                    <p>
+                        View the Arduino program and Proteus simulation
+                        files in our GitHub repository.
+                    </p>
+                </div>
+
+                <a
+                    href="https://github.com/Monika-003/proteus"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="github-button">
+                    Open GitHub Repository →
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT PROJECT -->
+        <section class="page-section hidden" id="about">
+
+            <div class="about-card">
+
+                <div class="about-logo">🫘</div>
+
+                <h2>About RenalEase</h2>
+
+                <p>
+                    RenalEase is a final-year engineering project focused
+                    on developing a compact, battery-powered dialysis
+                    monitoring prototype.
+                </p>
+
+                <p>
+                    The project explores sensor-based monitoring,
+                    micro-pump mechanisms, alerts and the possibility
+                    of remote observation through IoT technology.
+                </p>
+
+                <h3>Project Highlights</h3>
+
+                <ul>
+                    <li>Arduino-based monitoring concept</li>
+                    <li>Temperature and pressure sensor integration</li>
+                    <li>Heart-rate monitoring concept</li>
+                    <li>Battery-powered prototype</li>
+                    <li>Remote monitoring as a planned extension</li>
+                </ul>
+
+                <div class="disclaimer">
+                    <strong>Important:</strong>
+                    RenalEase is an engineering prototype, not a clinically
+                    validated or approved dialysis machine. This website
+                    is a demonstration interface and must not be used
+                    for medical decisions.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            <p>© 2026 RenalEase | Smart Healthcare Innovation</p>
+        </footer>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
